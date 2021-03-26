@@ -1,0 +1,6 @@
+<infinispan>
+  <cache-container>
+    <local-cache name="NoEncodingCache">
+    </local-cache>
+  </cache-container>
+</infinispan>

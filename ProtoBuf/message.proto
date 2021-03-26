@@ -1,0 +1,29 @@
+// File name: message.proto
+
+syntax = "proto2";
+
+package playground;
+
+
+
+/**
+ * @Indexed
+ */
+message Message {
+   
+   required int32 id = 1;
+   
+   /**
+    * @Field(store = Store.YES, index=Index.YES, analyze = Analyze.YES, analyzer = @Analyzer(definition= "standard"))
+    */
+   optional string text = 2;
+   
+   /**
+    * @Field(store = Store.YES)
+    */
+   optional string author = 3;
+   
+   optional string reader = 4;
+   
+   optional bool read = 5 [default = false];
+}

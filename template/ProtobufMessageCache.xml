@@ -1,0 +1,7 @@
+<infinispan>
+  <cache-container>
+    <local-cache name="ProtobufMessageCache">
+      <encoding media-type="application/x-protostream"/>
+    </local-cache>
+  </cache-container>
+</infinispan>
