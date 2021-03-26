@@ -1,0 +1,9 @@
+{
+   "_type": "playground.Message",
+   "id": 100,
+   "text": "Message #100 inserted by REST",
+   "author": "Wolf",
+   "reader": "Nobody",
+   "read": false
+}
+
