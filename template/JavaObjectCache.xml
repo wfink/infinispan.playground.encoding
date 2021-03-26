@@ -1,0 +1,10 @@
+<infinispan>
+  <cache-container>
+    <local-cache name="JavaSerializedCache">
+      <encoding>
+        <key media-type="application/x-java-object;type=java.lang.String"/>
+        <value media-type="application/x-java-object"/>
+      </encoding>
+    </local-cache>
+  </cache-container>
+</infinispan>
