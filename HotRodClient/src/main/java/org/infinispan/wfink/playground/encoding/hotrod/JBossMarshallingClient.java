@@ -5,7 +5,7 @@ import java.util.Map;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
-import org.infinispan.commons.marshall.JavaSerializationMarshaller;
+import org.infinispan.jboss.marshalling.commons.GenericJBossMarshaller;
 import org.infinispan.wfink.playground.encoding.domain.SimplePOJO;
 
 /**
@@ -15,18 +15,17 @@ import org.infinispan.wfink.playground.encoding.domain.SimplePOJO;
  *
  * @author <a href="mailto:WolfDieter.Fink@gmail.com">Wolf-Dieter Fink</a>
  */
-public class JavaSerializationClient {
+public class JBossMarshallingClient {
   private final RemoteCacheManager remoteCacheManager;
   private final RemoteCache<Object, SimplePOJO> remoteCache;
   private final String cacheName;
 
-  public JavaSerializationClient(String host, String port, String cacheName) {
+  public JBossMarshallingClient(String host, String port, String cacheName) {
     this.cacheName = cacheName;
     ConfigurationBuilder remoteBuilder = new ConfigurationBuilder();
     remoteBuilder.addServer().host(host).port(Integer.parseInt(port));
-    // use Java Marshaller the serialization white list must be added to READ the data from the server
-    remoteBuilder.marshaller(new JavaSerializationMarshaller()).addJavaSerialWhiteList("org.infinispan.wfink.playground.encoding.domain.SimplePOJO"); // for compatibility with older versions
-    // remoteBuilder.marshaller(new JavaSerializationMarshaller()).addJavaSerialAllowList("org.infinispan.wfink.playground.encoding.domain.SimplePOJO"); // the new method
+    // use JBoss Marshaller the serialization white list must be added to READ the data from the server
+    remoteBuilder.marshaller(new GenericJBossMarshaller());
 
     remoteCacheManager = new RemoteCacheManager(remoteBuilder.build());
     remoteCache = remoteCacheManager.getCache(cacheName);
@@ -43,8 +42,7 @@ public class JavaSerializationClient {
     remoteCache.put("s3", new SimplePOJO("Entry", "s3"));
     remoteCache.put("s4", new SimplePOJO("Entry", "s4"));
     remoteCache.put("s5", new SimplePOJO("Entry", "s5"));
-    remoteCache.put(new Integer(1), new SimplePOJO("Entry", "1"));
-    remoteCache.put(2, new SimplePOJO("Entry", "2"));
+    remoteCache.put("s6", new SimplePOJO("Entry", "s6"));
 
     System.out.println("  -> " + remoteCache.size() + " inserted");
   }
@@ -80,7 +78,7 @@ public class JavaSerializationClient {
   public static void main(String[] args) {
     String host = "localhost";
     String port = "11222";
-    String cacheName = "JavaSerializedCache";
+    String cacheName = "JBossMarshalledCache";
 
     if (args.length > 0) {
       port = args[0];
@@ -88,7 +86,7 @@ public class JavaSerializationClient {
     if (args.length > 1) {
       port = args[1];
     }
-    JavaSerializationClient client = new JavaSerializationClient(host, port, cacheName);
+    JBossMarshallingClient client = new JBossMarshallingClient(host, port, cacheName);
 
     client.getAllEntries();
     client.createEntries();

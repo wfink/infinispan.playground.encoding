@@ -35,6 +35,11 @@
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-remote-query-client</artifactId>
         </dependency>
+        <!--  necessary to use deprecated JBossMarshalling -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-jboss-marshalling</artifactId>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Encoding-Domain</artifactId>

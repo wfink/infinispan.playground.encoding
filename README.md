@@ -115,7 +115,7 @@ Build and Run the example
 7. Cache with Java Objects
 
     The JavaObjectCache will use the application/x-java-object encoding.
-    To be able to use it the server must have the configuratino for serialization white-list and the Java class added to server/lib (ATM only ./lib works!!)
+    To be able to use it the server must have the configuration for serialization white-list and the Java class added to server/lib (ATM only ./lib works!!)
     Copy the Domain/target/Encoding-Domain.jar to the server lib directory.
     Change the server/conf/infinispan.xml and add the following to the <cache-container>
 
@@ -140,8 +140,9 @@ Build and Run the example
 
 8. Cache with application/x-java-serialized-object
 
+    Run the JavaSerializationClient.
     The JavaSerializedCache will use the application/x-java-object encoding.
-    Objects are stored as byte[] in the server.
+    Objects are stored as byte[] in the server, the cache can only be accesses if the client use the JavaSerializationMarshaller!
 
       curl -H "Key-Content-Type: application/x-java-object;type=java.lang.String" --output - http://127.0.0.1:11222/rest/v2/caches/JavaSerializedCache/s1
        -> returns the class as byte[]
@@ -152,9 +153,28 @@ Build and Run the example
     TODO why the Integer key is not readable?
 
 
-X. Cache with apllication/x-jboss-marshalling
+9. Cache with application/x-jboss-marshalling
+
+    Run the JBossMarshallingClient.
+    The JavaJBossMarshalledCache will use the application/x-jboss-marshalling encoding.
+    Objects are stored as byte[] in the server, to access the encoded cache the GenericJBossMarshaller must be used, other like JavaSerialization will not work
+    as the content can not migrated.
+
+    To read data vie REST the following command can be used:
+
+      curl --output - http://127.0.0.1:11222/rest/v2/caches/JavaSerializedCache/s1
+      curl -H "Accept: application/x-jboss-marshalling" --output - http://127.0.0.1:11222/rest/v2/caches/JavaSerializedCache/s1
+
+   Both will return the same result --output is necessary as the output can mess up the terminal!
+
+   Conversion to plain text is the only alternative, all others will be rejected with ISPN120007.
+
+      curl -H "Accept: text/plain" http://127.0.0.1:11222/rest/v2/caches/JBossMarshalledCache/s1
+
+   But this will show the class name only.
 
 
+Note: for most of the caches the console http://localhost:11222 can be used to show cache content by navigating to the CacheContainer->{CacheName}
 
 
 QUESTIONS 
