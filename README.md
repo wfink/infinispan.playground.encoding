@@ -143,8 +143,13 @@ Build and Run the example
     The JavaSerializedCache will use the application/x-java-object encoding.
     Objects are stored as byte[] in the server.
 
-      curl -H "Key-Content-Type: application/x-java-object;type=java.lang.String" --output - http://127.0.0.1:11222/rest/v2/caches/JavaSerializedCache/1
-       -> return the class as byte[]
+      curl -H "Key-Content-Type: application/x-java-object;type=java.lang.String" --output - http://127.0.0.1:11222/rest/v2/caches/JavaSerializedCache/s1
+       -> returns the class as byte[]
+          the --output - is needed to force it as this could mess up the terminal!
+
+    Conversion to other output like json or xml is not possible. TODO could it be customized?
+
+    TODO why the Integer key is not readable?
 
 
 X. Cache with apllication/x-jboss-marshalling
@@ -153,10 +158,8 @@ X. Cache with apllication/x-jboss-marshalling
 
 
 QUESTIONS 
-- möglich mit einem template.xml mehrere Konfigurationen zu verwalten mit dem Cache-namen?
 - auslesen von protobuf objekten als json oder xml
 - konvertieren von objekten ?
-- queries für protobuf entries
 - anlegen von proto def mit REST
 - Java Objekte schreiben und lesen per REST?
 - Marshaller für JBM und JavaSerialization
