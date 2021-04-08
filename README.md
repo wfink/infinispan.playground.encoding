@@ -32,6 +32,7 @@ You might create all the caches directly using CLI
 
         ./bin/cli.sh -c localhost:11222
           create cache --file=template/ProtobufMessageCache.xml ProtobufMessageCache
+          create cache --file=template/ProtobufLibraryCache.xml LibraryCache
           create cache --file=template/NoEncodingCache.xml NoEncodingCache
           create cache --file=template/JavaSerializedCache.xml JavaSerializedCache
           create cache --file=template/JavaObjectCache.xml JavaObjectCache
@@ -52,6 +53,13 @@ Protobuf marshalling
   ProtoBuf is a simple project which uses the API to extract the schema and register it.
   A second example will add some objects to the cache and iterate or use Ickle query to find some entries.
   As well as using REST.
+
+  ProtoBufMessage TODO  show the old deprecated way to marshall custom objects.
+
+  ProtoBufAdaptor is a project to show how the new Marshalling with ProtoAdaptor annotation introduced with Infinispan 12 works to be able to marshall custom classes
+  which are not supported by Protostream out of the box.
+  This Adaptor annotation and the processing will generate the Marshalling code and with AutoProtoSchemaBuilder the registration is done.
+  The MessageMarshalling interface is now deprecated and might be removed in a future version.
 
 
 NoEncoding
