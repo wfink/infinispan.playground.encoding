@@ -11,7 +11,7 @@ public class Author {
   final String firstname;
 
   @ProtoFactory
-  Author(String name, String firstname) {
+  public Author(String name, String firstname) {
     this.name = name;
     this.firstname = firstname;
   }
@@ -23,4 +23,41 @@ public class Author {
   public String getFirstname() {
     return firstname;
   }
+
+  @Override
+  public String toString() {
+    return "Author [name=" + name + ", firstname=" + firstname + "]";
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Author other = (Author) obj;
+    if (firstname == null) {
+      if (other.firstname != null)
+        return false;
+    } else if (!firstname.equals(other.firstname))
+      return false;
+    if (name == null) {
+      if (other.name != null)
+        return false;
+    } else if (!name.equals(other.name))
+      return false;
+    return true;
+  }
+
 }
