@@ -19,6 +19,8 @@
     <modules>
         <module>Domain</module>
         <module>ProtoBuf</module>
+	<!-- this might cause compilation issues with versions 13+ because of deprecated MessageMarshaller-->
+        <module>ProtoBufMessageMarshaller</module>
 	<!-- this will cause compilation issues if used with infinisapn version before 12.0 -->
         <module>ProtoBufAdaptor</module>
         <module>NoEncoding</module>
