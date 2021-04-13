@@ -11,17 +11,12 @@ import org.infinispan.protostream.descriptors.Type;
 public class UUIDAdaptor {
 
   @ProtoFactory
-  UUID create(Long mostSigBitsFixed, Long leastSigBitsFixed) {
-    return new UUID(mostSigBitsFixed, leastSigBitsFixed);
+  UUID create(String stringUUID) {
+    return UUID.fromString(stringUUID);
   }
 
-  @ProtoField(number = 1, type = Type.FIXED64, defaultValue = "0")
-  Long getMostSigBitsFixed(UUID uuid) {
-    return uuid.getMostSignificantBits();
-  }
-
-  @ProtoField(number = 2, type = Type.FIXED64, defaultValue = "0")
-  Long getLeastSigBitsFixed(UUID uuid) {
-    return uuid.getLeastSignificantBits();
+  @ProtoField(number = 1, type = Type.STRING)
+  String getStringUUID(UUID uuid) {
+    return uuid.toString();
   }
 }
