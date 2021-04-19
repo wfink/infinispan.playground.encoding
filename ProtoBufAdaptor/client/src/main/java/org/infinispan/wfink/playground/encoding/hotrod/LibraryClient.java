@@ -35,7 +35,7 @@ public class LibraryClient {
     remoteBuilder.addContextInitializer(initializer);
 
     remoteCacheManager = new RemoteCacheManager(remoteBuilder.build()); // registerSchema need a cacheManager
-//    registerSchemas(initializer);
+//    registerSchemas(initializer);  // not needed as long as the example domain classes are copied to the ISPN_HOME/server/lib directory
 
     libraryCache = remoteCacheManager.getCache(cacheName);
 
@@ -51,10 +51,6 @@ public class LibraryClient {
    * @param updateServer true if the server should be updated with the schema
    */
   private void registerSchemas(SerializationContextInitializer initializer) {
-    // Register entity marshaller on the client side ProtoStreamMarshaller
-    // instance associated with the remote cache manager.
-    SerializationContext ctx = MarshallerUtil.getSerializationContext(remoteCacheManager);
-
     // Cache to register the schemas with the server too
     final RemoteCache<String, String> protoMetadataCache = remoteCacheManager.getCache("___protobuf_metadata"); // ProtobufMetadataManagerConstants.PROTOBUF_METADATA_CACHE_NAME is only available if query dependency is set
     // add the schema to the server side
