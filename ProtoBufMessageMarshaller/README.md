@@ -53,3 +53,16 @@ Run the example
       curl -H "Accept: application/x-protostream" --output -  http://127.0.0.1:11222/rest/v2/caches/LibraryCache/1
 
         returns the protobuf Message as binary protobuf message, note this could mess up the terminal!
+
+
+
+Migration examples for the ProtoAdaptor migration
+-------------------------------------------------
+
+The following examples are meant to show how this deprecated MessageMarshalling can be migrated to use the direct annotated classes with AutoProtoSchemaBuilder and ProtoAdapter for Infinispan 12+
+
+SimpleEntry will show how to migrate classes which need not explicit handling as the Java types are supported by ProtoStream, only a few Protobuf types need some additional flags for the annotations to generate the correct schema.
+
+CustomTypeEntry will use instance variable types which are not directly supported by ProtoStream and will be handled by a custom MessageMarshaller, such migration need a bit more effort shown with the ProtoBufAdaptor project.
+
+The implementation after migration is shown in the ProtoBufAdaptor project, note the classes are kept compatible.
