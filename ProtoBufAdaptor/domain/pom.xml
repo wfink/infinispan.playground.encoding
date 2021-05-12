@@ -36,10 +36,13 @@
             -->
             <scope>provided</scope>
         </dependency>
-        <dependency>
-	    <!-- dependency needed to use existing Infinispan adapters for classes like BigDecimal UUID and others -->
+        <!-- <dependency>
             <groupId>org.infinispan.protostream</groupId>
             <artifactId>protostream-types</artifactId>
+        </dependency> -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-client-hotrod</artifactId>
         </dependency>
     </dependencies>
 
