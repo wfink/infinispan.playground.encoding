@@ -1,4 +1,4 @@
-# infinispan.playground.encoding
+G# infinispan.playground.encoding
 Infinispan Marshalling and Encoding examples
 ===============================
 
@@ -58,3 +58,17 @@ Run the example
       curl -H "Accept: text/plain" http://127.0.0.1:11222/rest/v2/caches/LibraryCache/1
 
         returns a failure "No marshaller registered..." as this convertion is not supported
+
+
+
+Migrated example from the legacy MessageMarshaller implementation
+------------------------------------------------------------------
+
+SimpleEntry shows how to migrate a legacy implemenation in a compatible way by using @ProtoField annotations and use ProtoBuf message types to ensure a compatible ProtoBuf schema.
+As well as the generated Marshaller to use the same implementation for Interfaces or Abstract classes by set a hint which implementation should be used instead of the defaults.
+
+CustomTypeEntry shows how to migrate the legacy implementation in two different ways.
+1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdaptor. Here the required ProtoAdaptor implemenation is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
+
+2) By using a custom ProtoAdaptor implemenation for the complete class to have full control about the marshalling process, even if the Marshaller itself is still generated.
+But the implementation how fields are marshalled is complete customizable.
