@@ -17,6 +17,7 @@
         </license>
     </licenses>
     <modules>
+        <module>Text</module>
         <module>Domain</module>
         <module>ProtoBuf</module>
 	<!-- this might cause compilation issues with versions 13+ because of deprecated MessageMarshaller-->
