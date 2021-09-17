@@ -34,7 +34,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Infinispan -->
-        <version.org.infinispan>12.1.0.Final</version.org.infinispan>
+        <version.org.infinispan>12.1.7.Final</version.org.infinispan>
         <!-- JDG 8.1.1
         <version.org.infinispan>11.0.9.Final-redhat-00001</version.org.infinispan>
         -->

@@ -21,7 +21,7 @@ Hot Rod is a binary TCP client-server protocol. The Hot Rod protocol facilitates
 Prepare a server instance
 -------------
 Simple start a Infinispan 11+ or RHDG 8+ server and follow the examples below.
-To keep the client simple you need to remove the 'security-realm' from the endpoints element.
+To keep the client simple you need to remove the 'security-realm' from the endpoints element, as well as the authorization.
 
 Type this command to build the projects
 
