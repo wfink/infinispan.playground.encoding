@@ -114,6 +114,7 @@ public class ProtobufMessageClient {
   }
 
   private void getMessages() {
+    System.out.println("read Messages by key 1...9");
     for (int i = 1; i < 10; i++) {
       Object m = messageCache.get(String.valueOf(i));
       if (m != null) {
