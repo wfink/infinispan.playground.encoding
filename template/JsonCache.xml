@@ -1,0 +1,10 @@
+<infinispan>
+  <cache-container>
+    <local-cache name="JsonCache">
+      <encoding>
+        <key media-type="text/plain"/>
+        <value media-type="application/json"/>
+      </encoding>
+    </local-cache>
+  </cache-container>
+</infinispan>

@@ -3,7 +3,7 @@
     <local-cache name="JBossMarshalledCache">
       <encoding>
         <key media-type="application/x-jboss-marshalling"/>
-	<value media-type="application/x-jboss-marshalling"/>
+        <value media-type="application/x-jboss-marshalling"/>
       </encoding>
     </local-cache>
   </cache-container>

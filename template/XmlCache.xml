@@ -1,0 +1,10 @@
+<infinispan>
+  <cache-container>
+    <local-cache name="XmlCache">
+      <encoding>
+        <key media-type="text/plain"/>
+        <value media-type="application/xml"/>
+      </encoding>
+    </local-cache>
+  </cache-container>
+</infinispan>

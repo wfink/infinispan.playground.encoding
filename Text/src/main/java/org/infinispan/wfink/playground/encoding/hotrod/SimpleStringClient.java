@@ -3,7 +3,6 @@ package org.infinispan.wfink.playground.encoding.hotrod;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
-import org.infinispan.commons.marshall.ProtoStreamMarshaller;
 
 /**
  * A simple client which uses Simple Objects (String). With the encoding text/plain most of the Marshallers are able to read it. Note without encoding the cache content is different and the simple Strings used as keys are different byte[] for each Marshaller, so the entries are created per
@@ -11,19 +10,20 @@ import org.infinispan.commons.marshall.ProtoStreamMarshaller;
  *
  * @author <a href="mailto:WolfDieter.Fink@gmail.com">Wolf-Dieter Fink</a>
  */
-public class SimpleStringKeyClient {
+public class SimpleStringClient {
   private RemoteCacheManager remoteCacheManager;
   private RemoteCache<String, String> remoteCache;
 
-  public SimpleStringKeyClient(String host, String port, String cacheName) {
+  public SimpleStringClient(String host, String port, String cacheName) {
     ConfigurationBuilder remoteBuilder = new ConfigurationBuilder();
     remoteBuilder.addServer().host(host).port(Integer.parseInt(port));
-    remoteBuilder.marshaller(new ProtoStreamMarshaller()); // this is basically the default since ISPN 12
+//    remoteBuilder.marshaller(new ProtoStreamMarshaller()); // this is basically the default since ISPN 12
 //  remoteBuilder.marshaller(new JavaSerializationMarshaller()); // this will not work
     // the remaining Marshallers are working and can be used for the same cache configured with encoding text/plain
-//  remoteBuilder.marshaller(new UTF8StringMarshaller());
+//    remoteBuilder.marshaller(new UTF8StringMarshaller());
 //  remoteBuilder.marshaller(new StringMarshaller(Charset.defaultCharset()));
-//  remoteBuilder.marshaller(new GenericJBossMarshaller());
+//    remoteBuilder.marshaller(new GenericJBossMarshaller());
+
     remoteCacheManager = new RemoteCacheManager(remoteBuilder.build());
 
     remoteCache = remoteCacheManager.getCache(cacheName);
@@ -45,7 +45,6 @@ public class SimpleStringKeyClient {
     remoteCache.put("8", "Entry #8");
     remoteCache.put("9", "Entry #9");
     remoteCache.put("10", "Entry #10");
-    remoteCache.put("xml1", "<person><firstname>Wolf</firstname><lastname>Fink</lastname></person>");
 
     System.out.println("  -> " + remoteCache.size() + " inserted");
   }
@@ -75,7 +74,7 @@ public class SimpleStringKeyClient {
     if (args.length > 1) {
       port = args[1];
     }
-    SimpleStringKeyClient client = new SimpleStringKeyClient(host, port, cacheName);
+    SimpleStringClient client = new SimpleStringClient(host, port, cacheName);
 
     client.insertEntries();
     client.getEntries();
