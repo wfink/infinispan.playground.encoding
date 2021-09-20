@@ -1,7 +1,7 @@
 <infinispan>
   <cache-container>
     <local-cache name="PlainTextCache">
-	    <encoding media-type="text/plain"/>
+      <encoding media-type="text/plain"/>
     </local-cache>
   </cache-container>
 </infinispan>

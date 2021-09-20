@@ -86,13 +86,14 @@ Java Object
   It will be not compatible with other type of (none java) clients and other Marshallers
 
 
+plain/Text and JSON XML
 
-
+  Text messages can be any String, so JSON and XML is also a text message, but not all text messages are XML or JSON.
+  Cache can be encoded for each content and might behave different.
+  
 
 
 
 QUESTIONS 
-- auslesen von protobuf objekten als json oder xml
-- konvertieren von objekten ?
 - anlegen von proto def mit REST
 - Java Objekte schreiben und lesen per REST?
