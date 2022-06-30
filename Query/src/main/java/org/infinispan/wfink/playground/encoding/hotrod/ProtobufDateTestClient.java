@@ -64,7 +64,7 @@ public class ProtobufDateTestClient {
       ProtoSchemaBuilder protoSchemaBuilder = new ProtoSchemaBuilder();
       msgSchemaFile = protoSchemaBuilder.fileName(PROTOSCHEMA_NAME).packageName("playground").addClass(DateQueryEntity.class).build(ctx);
     } catch (Exception e) {
-      throw new RuntimeException("Failed to build protobuf definition from 'Message class'", e);
+      throw new RuntimeException("Failed to build protobuf definition from 'DateQuery class'", e);
     }
 
     // the following part is not necessary if the server already have the schema
@@ -148,7 +148,7 @@ public class ProtobufDateTestClient {
 
     boolean run = true;
     while (run) {
-      client.insert(20);
+      client.insert(100);
       client.find();
     }
 

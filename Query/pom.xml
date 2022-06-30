@@ -57,6 +57,7 @@
               <version>${exec.plugin.version}</version>
               <configuration>
 		<skip>false</skip>
+		<mainClass>org.infinispan.wfink.playground.encoding.hotrod.ProtobufDateTestClient</mainClass>
               </configuration>
             </plugin>
         </plugins>
