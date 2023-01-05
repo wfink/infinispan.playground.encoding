@@ -47,12 +47,14 @@ public class XmlClient {
   private void insertText() {
     System.out.println("Inserting text entries into cache...");
     remoteCache.put("text", "A simple String\n for XML encoding");
+    remoteCache.put("invalidXmlAsText", "<invalid>Not a valid XML content");
+    remoteCache.put("xmlAsText", "<name>Wolf</name>");
 
     System.out.println("  size -> " + remoteCache.size());
   }
 
   private void getEntries() {
-    List<String> l = Arrays.asList("xml", "xmlWithCR", "xmlInvalid", "xmlText", "text");
+    List<String> l = Arrays.asList("xml", "xmlWithCR", "xmlInvalid", "xmlText", "text", "xmlAsText", "invalidXmlAsText");
     for (String key : l) {
       String m = remoteCache.get(key);
       if (m != null) {
