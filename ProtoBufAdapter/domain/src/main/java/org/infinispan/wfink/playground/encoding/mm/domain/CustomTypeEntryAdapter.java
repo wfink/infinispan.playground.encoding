@@ -14,7 +14,7 @@ import org.infinispan.protostream.annotations.ProtoField;
  * @author <a href="mailto:WolfDieter.Fink@gmail.com">Wolf-Dieter Fink</a>
  */
 @ProtoAdapter(CustomTypeEntry.class)
-public class CustomTypeEntryAdaptor {
+public class CustomTypeEntryAdapter {
 
   @ProtoFactory
   public CustomTypeEntry create(String description, String bigInt) {

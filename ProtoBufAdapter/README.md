@@ -46,7 +46,7 @@ Run the example
         should return the protobuf Message as json object
         As there is no registered proto schema for the server this will fail
         Until:
-         - The domain/target/Encoding-ProtoAdaptorDomain.jar is dropped to the ISPN_HOME/server/lib directory
+         - The domain/target/Encoding-ProtoAdapterDomain.jar is dropped to the ISPN_HOME/server/lib directory
            This will register automatically the schema, without using the proto-schema-cache so all server instances needs the classes
          - The client register the schema when starting (first), uncomment the registerSchema(...) invocation
            It will add the proto schema to the (persisted) proto-schema-cache clusterwide
@@ -68,7 +68,7 @@ SimpleEntry shows how to migrate a legacy implemenation in a compatible way by u
 As well as the generated Marshaller to use the same implementation for Interfaces or Abstract classes by set a hint which implementation should be used instead of the defaults.
 
 CustomTypeEntry shows how to migrate the legacy implementation in two different ways.
-1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdaptor. Here the required ProtoAdaptor implemenation is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
+1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdapter. Here the required ProtoAdapter implemenation is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
 
-2) By using a custom ProtoAdaptor implemenation for the complete class to have full control about the marshalling process, even if the Marshaller itself is still generated.
+2) By using a custom ProtoAdapter implemenation for the complete class to have full control about the marshalling process, even if the Marshaller itself is still generated.
 But the implementation how fields are marshalled is complete customizable.

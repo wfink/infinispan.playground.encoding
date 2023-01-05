@@ -16,9 +16,9 @@
     </licenses>
 
         <version>1.0</version>
-    <artifactId>Encoding-Protobuf-ProtoAdaptor</artifactId>
+    <artifactId>Encoding-Protobuf-ProtoAdapter</artifactId>
 
-    <name>Encoding: Example with ProtoAdaptor</name>
+    <name>Encoding: Example with ProtoAdapter</name>
 
     <url>http://maven.apache.org</url>
     <packaging>pom</packaging>

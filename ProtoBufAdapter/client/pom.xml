@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.infinispan.wfink.playground.encoding</groupId>
-        <artifactId>Encoding-Protobuf-ProtoAdaptor</artifactId>
+        <artifactId>Encoding-Protobuf-ProtoAdapter</artifactId>
         <version>1.0</version>
     </parent>
     <licenses>
@@ -15,9 +15,9 @@
         </license>
     </licenses>
 
-    <artifactId>Encoding-ProtoAdaptorClient</artifactId>
+    <artifactId>Encoding-ProtoAdapterClient</artifactId>
 
-    <name>Encoding: HotRod client application to use the encoding with ProtoAdaptor</name>
+    <name>Encoding: HotRod client application to use the encoding with ProtoAdapter</name>
 
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
@@ -25,7 +25,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Encoding-ProtoAdaptorDomain</artifactId>
+            <artifactId>Encoding-ProtoAdapterDomain</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

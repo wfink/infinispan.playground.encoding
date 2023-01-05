@@ -8,7 +8,7 @@ import org.infinispan.protostream.annotations.ProtoField;
 import org.infinispan.protostream.descriptors.Type;
 
 @ProtoAdapter(UUID.class)
-public class UUIDAdaptor {
+public class UUIDAdapter {
 
   @ProtoFactory
   UUID create(String stringUUID) {

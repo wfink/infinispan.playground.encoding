@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.infinispan.wfink.playground.encoding</groupId>
-        <artifactId>Encoding-Protobuf-ProtoAdaptor</artifactId>
+        <artifactId>Encoding-Protobuf-ProtoAdapter</artifactId>
         <version>1.0</version>
     </parent>
     <licenses>
@@ -15,9 +15,9 @@
         </license>
     </licenses>
 
-    <artifactId>Encoding-ProtoAdaptorDomain</artifactId>
+    <artifactId>Encoding-ProtoAdapterDomain</artifactId>
 
-    <name>Encoding: Protostream Encoder and Marshalling classes for ProtoAdaptor</name>
+    <name>Encoding: Protostream Encoder and Marshalling classes for ProtoAdapter</name>
 
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
