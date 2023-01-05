@@ -18,7 +18,7 @@ The content can be converted for each client, the server will handle this.
 
 Preparation
 -------------
-Follow the README from teh root project folder to prepare a server instance.
+Follow the README from the root project folder to prepare a server instance.
 Add the necessary cache by using the template and CLI
 
         create cache --file=../template/ProtobufMessageCache.xml ProtobufMessageCache
@@ -26,6 +26,9 @@ Add the necessary cache by using the template and CLI
 
 Run the example
 -------------------------
+
+   Custom Message class with protobuf definition
+   ---------------------------------------------
 
    Type this command or an IDE to start the simple example class RegisterProtobufClient
 
@@ -87,4 +90,3 @@ Run the example
        curl -X POST --data-binary @./template/message100.json -H "Key-Content-Type: application/x-java-object;type=java.lang.Integer" -H "Content-Type: application/json" http://127.0.0.1:11222/rest/v2/caches/ProtobufMessageCache/100
 
      will have the same result, but consider executing ProtobufMessageClient will show the message iterating the cache without ClassCastException, but will not find it with get("100")
-

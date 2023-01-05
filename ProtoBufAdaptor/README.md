@@ -21,7 +21,7 @@ The content can be converted for each client, the server will handle this.
 
 Preparation
 -------------
-Follow the README from teh root project folder to prepare a server instance.
+Follow the README from the root project folder to prepare a server instance.
 Add the necessary cache by using the template and CLI
 
         create cache --file=../template/ProtobufLibraryCache.xml LibraryCache
