@@ -1,0 +1,35 @@
+// File name: library.proto
+
+syntax = "proto2";
+
+package library;
+
+
+
+message Book {
+   
+   required UUID id = 1;
+   
+   required string title = 2;
+   
+   optional string description = 3;
+   
+   required int32 publicationYear = 4 [default = -1];
+   
+   repeated Author authors = 5;
+}
+
+
+message Author {
+   
+   optional string name = 1;
+   
+   optional string firstname = 2;
+}
+
+
+message UUID {
+   
+   optional string stringUUID = 1;
+}
+

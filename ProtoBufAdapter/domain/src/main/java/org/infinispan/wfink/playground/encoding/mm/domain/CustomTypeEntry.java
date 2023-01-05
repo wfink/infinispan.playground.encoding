@@ -19,7 +19,7 @@ public class CustomTypeEntry {
   final BigInteger bigInt;
 
   /**
-   * <b>Note:</b> The parameter names must be changed because of the requirements of matching with the field names!
+   * <b>Note:</b> The parameter names are required to match the field names!
    *
    * @param description
    * @param bigInt

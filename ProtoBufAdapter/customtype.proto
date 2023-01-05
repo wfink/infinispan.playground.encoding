@@ -1,0 +1,21 @@
+// File name: customtype.proto
+
+syntax = "proto2";
+
+package playground;
+
+
+
+message BigInteger {
+   
+   optional bytes bytes = 1;
+}
+
+
+message CustomTypeEntry {
+   
+   optional string description = 1;
+   
+   optional BigInteger bigInt = 2;
+}
+

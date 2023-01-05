@@ -6,8 +6,6 @@ import java.util.Vector;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
-import org.infinispan.client.hotrod.marshall.MarshallerUtil;
-import org.infinispan.protostream.SerializationContext;
 import org.infinispan.protostream.SerializationContextInitializer;
 import org.infinispan.wfink.playground.encoding.domain.Author;
 import org.infinispan.wfink.playground.encoding.domain.Book;

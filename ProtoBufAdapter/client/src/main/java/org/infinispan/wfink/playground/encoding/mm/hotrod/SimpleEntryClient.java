@@ -22,14 +22,18 @@ public class SimpleEntryClient {
   private RemoteCacheManager remoteCacheManager;
   private RemoteCache<String, SimpleEntry> cache;
 
+  /**
+   * There is an <a href="https://issues.redhat.com/browse/ISPN-12963">enhancement request</a> to not use generated code. Add the Initializer as String will work remoteBuilder.addContextInitializer("org.infinispan.wfink.playground.encoding.domain.LibraryInitalizerImpl"); But add the Initializer
+   * directly as class instance to get compiler errors if missed
+   *
+   * @param host
+   * @param port
+   * @param cacheName
+   */
   public SimpleEntryClient(String host, String port, String cacheName) {
     ConfigurationBuilder remoteBuilder = new ConfigurationBuilder();
     remoteBuilder.addServer().host(host).port(Integer.parseInt(port)); // .marshaller(new ProtoStreamMarshaller()); // The Protobuf based marshaller is no longer required for query capabilities as it is the default for ISPN 11 and RHDG 8
 
-    // There is an enhancement request to not use generated code -> https://issues.redhat.com/browse/ISPN-12963
-    // add the Initializer as String will work
-    // remoteBuilder.addContextInitializer("org.infinispan.wfink.playground.encoding.domain.LibraryInitalizerImpl");
-    // add the Initializer directly as class instance to get compiler errors if missed
     SimpleEntryInitializer initializer = new org.infinispan.wfink.playground.encoding.mm.domain.SimpleEntryInitializerImpl();
     remoteBuilder.addContextInitializer(initializer);
 
