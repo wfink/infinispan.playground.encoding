@@ -2,12 +2,16 @@ package org.infinispan.wfink.playground.encoding.mm.hotrod;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Map;
 
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.client.hotrod.Search;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 import org.infinispan.protostream.GeneratedSchema;
+import org.infinispan.query.dsl.Query;
+import org.infinispan.query.dsl.QueryFactory;
 import org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeEntry;
 import org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeInitializer;
 
@@ -35,7 +39,7 @@ public class CustomTypeEntryClient {
 
     remoteCacheManager = new RemoteCacheManager(remoteBuilder.build()); // registerSchema need a cacheManager
     System.out.println("SCHEMA\n" + initializer.getProtoFile());
-//    registerSchemas(initializer);  // not needed as long as the example domain classes are copied to the ISPN_HOME/server/lib directory
+//    registerSchemas(initializer); // not needed as long as the example domain classes are copied to the ISPN_HOME/server/lib directory
 
     cache = remoteCacheManager.getCache(cacheName);
 
@@ -76,12 +80,50 @@ public class CustomTypeEntryClient {
   }
 
   private void getCustomEntries() {
-    System.out.println("read all Messages...");
+    System.out.println("read all Custom Entries...");
     for (Map.Entry<String, CustomTypeEntry> m : cache.entrySet()) {
       System.out.println(">> " + m);
 
     }
-    System.out.println("Messages read size is " + cache.size());
+    System.out.println("CustomTypeCache size is " + cache.size());
+  }
+
+  private void queryStatic() {
+    QueryFactory queryFactory = Search.getQueryFactory(cache);
+    Query<CustomTypeEntry> query = queryFactory.create("FROM playground.CustomTypeEntry e WHERE e.description = 'Entry100'");
+    System.out.println("Execute query description");
+    List<CustomTypeEntry> list = query.execute().list();
+    System.out.println("Result : " + list);
+
+    // will not work for embedded entities
+    query = queryFactory.create("FROM playground.CustomTypeEntry e WHERE e.bigInt = 20397882081197443358640281739902897356800000000");
+    System.out.println("Execute query bigInt");
+    try {
+      list = query.execute().list();
+      System.out.println("Result : " + list);
+    } catch (Exception e) {
+      System.out.println("Failed as expected, message : " + e.getMessage());
+    }
+  }
+
+  private void queryWithParameter() {
+    QueryFactory queryFactory = Search.getQueryFactory(cache);
+    Query<CustomTypeEntry> query = queryFactory.create("FROM playground.CustomTypeEntry e WHERE e.description = :desc");
+    query.setParameter("desc", "Entry100");
+    System.out.println("Execute paameter query description");
+    List<CustomTypeEntry> list = query.execute().list();
+    System.out.println("Result : " + list);
+
+    // currently failing with "No Marshaller for BitInteger" even if registered
+    query = queryFactory.create("FROM playground.CustomTypeEntry e WHERE e.bigInt = :bigInt");
+    query.setParameter("bigInt", new BigInteger("20397882081197443358640281739902897356800000000"));
+    System.out.println("Execute parameter query bigInt");
+    try {
+      list = query.execute().list();
+      System.out.println("Result : " + list);
+    } catch (Exception e) {
+      System.out.println("Failed unexpected, message : " + e.getMessage());
+    }
   }
 
   private void stop() {
@@ -103,6 +145,8 @@ public class CustomTypeEntryClient {
 
     client.getCustomEntries(); // get all from cache
     client.insertCustomEntries(); // insert some
+    client.queryStatic();
+    client.queryWithParameter();
 
     client.stop();
     System.out.println("\nDone !");
