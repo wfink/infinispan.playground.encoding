@@ -12,7 +12,8 @@ What is it?
 This example will show how the HotRod client and REST can access Protobuf objects from an encoded cache.
 It uses a UUID class which is not supported out of the box from protostream.
 
-The MessageMarshaller interface and API is deprecated from Infinispan 11 and replaced by @ProtoAdaptor in Infinispan 12.
+The MessageMarshaller interface and API is deprecated from Infinispan 11 and replaced by @ProtoAdapter in Infinispan 12.
+If you start with an implementation use the ProtBufAdapter project, for migrate an existing project see the Migration example below.
 
 It allows different type of clients to access the remote cache, like HotRod (Java C++ C#) node.js and REST.
 The content can be converted for each client, the server will handle this.
@@ -56,13 +57,13 @@ Run the example
 
 
 
-Migration examples for the ProtoAdaptor migration
+Migration examples for the ProtoAdapter migration
 -------------------------------------------------
 
 The following examples are meant to show how this deprecated MessageMarshalling can be migrated to use the direct annotated classes with AutoProtoSchemaBuilder and ProtoAdapter for Infinispan 12+
 
 SimpleEntry will show how to migrate classes which need not explicit handling as the Java types are supported by ProtoStream, only a few Protobuf types need some additional flags for the annotations to generate the correct schema.
 
-CustomTypeEntry will use instance variable types which are not directly supported by ProtoStream and will be handled by a custom MessageMarshaller, such migration need a bit more effort shown with the ProtoBufAdaptor project.
+CustomTypeEntry will use instance variable types which are not directly supported by ProtoStream and will be handled by a custom MessageMarshaller, such migration need a bit more effort shown with the ProtoBufAdapter project.
 
-The implementation after migration is shown in the ProtoBufAdaptor project, note the classes are kept compatible.
+The implementation after migration is shown in the ProtoBufAdapter project, note the classes are kept compatible.
