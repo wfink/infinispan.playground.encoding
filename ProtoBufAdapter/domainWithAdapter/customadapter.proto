@@ -1,0 +1,15 @@
+// File name: customadapter.proto
+// Generated from : org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeAdapterInitializer
+
+syntax = "proto2";
+
+package playground;
+
+
+
+message CustomTypeEntry {
+   
+   required string description = 1;
+   
+   required string bigInt = 2;
+}

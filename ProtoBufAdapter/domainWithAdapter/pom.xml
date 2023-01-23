@@ -24,6 +24,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Encoding-ProtoAdapterDomain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <!-- the protostream processor dependency will trigger the build of marshall classes
                  and the proto files for the annotated Book class
             -->

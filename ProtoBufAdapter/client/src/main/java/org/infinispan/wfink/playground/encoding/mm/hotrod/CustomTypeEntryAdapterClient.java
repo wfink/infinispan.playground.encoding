@@ -13,37 +13,32 @@ import org.infinispan.protostream.GeneratedSchema;
 import org.infinispan.query.dsl.Query;
 import org.infinispan.query.dsl.QueryFactory;
 import org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeEntry;
-import org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeInitializer;
 
 /**
  * <p>
- * A simple client using the recommended Marshalling and Encoding for Infinispan 12+, as Protobuf will be the best option to use the full power of Infinispan features. The ProtoStreamMarshaller will support primitive/scalar types without explicit definition. Because of this the simple String key can
- * be used.
+ * An example to demostrate a compatible way to use legacy caches with Message Marshalling, or have the full programatic control of the serialization and marshalling. The ProtoStreamMarshaller will support primitive/scalar types without explicit definition. Because of this only custom classes or
+ * unsupported classes like BigInteger need an adapter.
  * </p>
  * <p>
- * Note that this client is mostly the same as CustomTypeEntryAdapterClient except the construction for the Initializer class to demonstrate the different options of implementation.
+ * Note that this client is mostly the same as CustomTypeEntryClient except the construction for the Initializer class to demonstrate the different options of implementation.
  * </p>
  *
  * @author <a href="mailto:WolfDieter.Fink@gmail.com">Wolf-Dieter Fink</a>
  */
-public class CustomTypeEntryClient {
+public class CustomTypeEntryAdapterClient {
   private RemoteCacheManager remoteCacheManager;
   private RemoteCache<String, CustomTypeEntry> cache;
 
-  public CustomTypeEntryClient(String host, String port, String cacheName) {
+  public CustomTypeEntryAdapterClient(String host, String port, String cacheName) {
     ConfigurationBuilder remoteBuilder = new ConfigurationBuilder();
     remoteBuilder.addServer().host(host).port(Integer.parseInt(port)); // .marshaller(new ProtoStreamMarshaller()); // The Protobuf based marshaller is no longer required for query capabilities as it is the default for ISPN 11 and RHDG 8
 
     // There is an enhancement request to not use generated code -> https://issues.redhat.com/browse/ISPN-12963
     // add the Initializer as String will work
-    // remoteBuilder.addContextInitializer("org.infinispan.wfink.playground.encoding.domain.LibraryInitalizerImpl");
+    remoteBuilder.addContextInitializer("org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeAdapterInitializerImpl");
     // add the Initializer directly as class instance to get compiler errors if missed
-    CustomTypeInitializer initializer = new org.infinispan.wfink.playground.encoding.mm.domain.CustomTypeInitializerImpl();
-    remoteBuilder.addContextInitializer(initializer);
 
     remoteCacheManager = new RemoteCacheManager(remoteBuilder.build()); // registerSchema need a cacheManager
-    System.out.println("SCHEMA\n" + initializer.getProtoFile());
-//    registerSchemas(initializer); // not needed as long as the example domain classes are copied to the ISPN_HOME/server/lib directory
 
     cache = remoteCacheManager.getCache(cacheName);
 
@@ -146,7 +141,7 @@ public class CustomTypeEntryClient {
     if (args.length > 1) {
       port = args[1];
     }
-    CustomTypeEntryClient client = new CustomTypeEntryClient(host, port, cacheName);
+    CustomTypeEntryAdapterClient client = new CustomTypeEntryAdapterClient(host, port, cacheName);
 
     client.getCustomEntries(); // get all from cache
     client.insertCustomEntries(); // insert some

@@ -85,6 +85,10 @@ Run the example with
 CustomTypeEntry shows how to migrate the legacy implementation in two different ways.
 1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdapter. Here the required ProtoAdapter implementation is  for BigInteger is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
 
+Register the proto schema with REST after the server is started with
+
+        curl -X PUT --data-binary @domain/customtype.proto http://127.0.0.1:11222/rest/v2/schemas/customtype
+
 Run the example with
 
         mvn exec:java -Dexec.mainClass="org.infinispan.wfink.playground.encoding.mm.hotrod.CustomTypeEntryClient"
@@ -92,3 +96,16 @@ Run the example with
 
 2) By using a custom ProtoAdapter implementation for the complete class to have full control about the marshalling process, even if the Marshaller itself is still generated.
 But the implementation how fields are marshalled is complete customizable.
+
+Register the proto schema with REST after the server is started with
+
+        curl -X PUT --data-binary @domainWithAdapter/customadapter.proto http://127.0.0.1:11222/rest/v2/schemas/customadapter
+
+HINT: As both examples will use the same CustomTypeEntry, it is mandatory to delete the other customtype definition and clear the cache or restart the server because the serialization is not compatible!
+
+        curl -X DELETE http://127.0.0.1:11222/rest/v2/schemas/customtype
+
+
+Run the example with
+
+        mvn exec:java -Dexec.mainClass="org.infinispan.wfink.playground.encoding.mm.hotrod.CustomTypeEntryClient"

@@ -25,6 +25,7 @@
 
     <modules>
       <module>domain</module>
+      <module>domainWithAdapter</module>
       <module>client</module>
     </modules>
 </project>
