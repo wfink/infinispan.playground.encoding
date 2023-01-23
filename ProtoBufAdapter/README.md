@@ -74,7 +74,7 @@ Run the example
 Migrated example from the legacy ProtoBufMessageMarshaller implementation
 ------------------------------------------------------------------
 
-SimpleEntry shows how to migrate a legacy implemenation in a compatible way by using @ProtoField annotations and use ProtoBuf message types to ensure a compatible ProtoBuf schema.
+SimpleEntry shows how to migrate a legacy implementation in a compatible way by using @ProtoField annotations and use ProtoBuf message types to ensure a compatible ProtoBuf schema.
 As well as the generated Marshaller to use the same implementation for Interfaces or Abstract classes by set a hint which implementation should be used instead of the defaults.
 
 Run the example with
@@ -83,7 +83,7 @@ Run the example with
 
 
 CustomTypeEntry shows how to migrate the legacy implementation in two different ways.
-1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdapter. Here the required ProtoAdapter implemenation is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
+1) By using the new approach with embedded messages where only unhandled classes are using a ProtoAdapter. Here the required ProtoAdapter implementation is  for BigInteger is provided by ProtoStream. This is done for Java classes which are used very often to minimize the effort if the user must implement it.
 
 Run the example with
 

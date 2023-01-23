@@ -7,7 +7,7 @@ import org.infinispan.protostream.annotations.ProtoField;
 
 /**
  * A custom immutable object to demonstrate migration.<br/>
- * Note the @Proto annotations are ignored if the @ProtoAdapter approache is used to generate the Marshaller and ProtoBuf Schema to generate a data compatible migration<br/>
+ * Note the @Proto annotations are ignored if the @ProtoAdapter approach is used to generate the Marshaller and ProtoBuf Schema to generate a data compatible migration<br/>
  *
  * @author <a href="mailto:WolfDieter.Fink@gmail.com">Wolf-Dieter Fink</a>
  */
