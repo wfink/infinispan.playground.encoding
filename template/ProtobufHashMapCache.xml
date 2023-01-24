@@ -1,0 +1,7 @@
+<infinispan>
+  <cache-container>
+    <distributed-cache name="HashMapCache">
+      <encoding media-type="application/x-protostream"/>
+    </distributed-cache>
+  </cache-container>
+</infinispan>

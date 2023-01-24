@@ -29,11 +29,13 @@ Add the necessary cache by using the template and CLI
         create cache --file=../template/ProtobufLibraryCache.xml LibraryCache
 
 if necessary
+        create cache --file=../template/ProtobufHashMapCache.xml HashMapCache
+        create cache --file=../template/ProtobufHashtableCache.xml HashtableCache
         create cache --file=../template/ProtobufSimpleEntryCache.xml SimpleEntryCache
         create cache --file=../template/ProtobufCustomTypeEntryCache.xml CustomTypeCache
 
 
-Run the example
+Run the examples
 -------------------------
 
    Type this command or an IDE to start the simple example class LibraryClient
@@ -71,8 +73,21 @@ Run the example
 
 
 
+Add adapter to support HashMap or Hashtable for ProtoStream
+------------------------------------------------------------
+
+   The implementation of ProtoStream does not support to store HashMap or Hashtable. This will be added in the future, tracked by https://issues.redhat.com/browse/ISPN-14438.
+   Currently there must be a ProtoStreamAdapter to be able to store that Java classes.
+   The example of HashMapAdapter and HashtableAdapter will show that, the related client classes can be used to check that.
+
+   Run the example client with one of the following commands:
+
+        mvn exec:java -Dexec.mainClass="org.infinispan.wfink.playground.encoding.hotrod.HashtableAdapterClient"
+        mvn exec:java -Dexec.mainClass="org.infinispan.wfink.playground.encoding.hotrod.HashMapAdapterClient"
+
+
 Migrated example from the legacy ProtoBufMessageMarshaller implementation
-------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 SimpleEntry shows how to migrate a legacy implementation in a compatible way by using @ProtoField annotations and use ProtoBuf message types to ensure a compatible ProtoBuf schema.
 As well as the generated Marshaller to use the same implementation for Interfaces or Abstract classes by set a hint which implementation should be used instead of the defaults.

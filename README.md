@@ -39,6 +39,8 @@ You might create all the caches directly using CLI
           create cache --file=template/JBossMarshalledCache.xml JBossMarshalledCache
           create cache --file=template/ProtobufSimpleEntryCache.xml ProtobufSimpleEntryCache
           create cache --file=template/ProtobufCustomTypeEntryCache.xml CustomTypeCache
+          create cache --file=template/ProtobufHashMapCache.xml HashMapCache
+          create cache --file=template/ProtobufHashtableCache.xml HashtableCache
           create cache --file=template/PlainTextCache.xm PlainTextCache
 
 
