@@ -54,7 +54,7 @@
               <version>${exec.plugin.version}</version>
               <configuration>
 		<skip>false</skip>
-		<mainClass>org.infinispan.wfink.playground.encoding.hotrod.JavaSerializationClient</mainClass>
+		<mainClass>org.infinispan.wfink.playground.encoding.hotrod.JavaObjectClient</mainClass>
               </configuration>
             </plugin>
         </plugins>

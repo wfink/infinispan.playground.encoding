@@ -16,7 +16,7 @@ Use of Java object is not recommeded because of incompatibility with other langu
 
 Preparation
 -------------
-Follow the README from teh root project folder to prepare a server instance.
+Follow the README from the root project folder to prepare a server instance.
 Add the necessary cache by using the template and CLI
 
         create cache --file=../template/JavaObjectCache.xml JavaObjectCache
@@ -32,14 +32,15 @@ Run the example
     The JavaObjectCache will use the application/x-java-object encoding.
     Objects are stored as byte[] in the server, the cache can only be accesses if the client use the JavaSerializationMarshaller!
 
-    To be able to use it the server must have the configuration for serialization white-list and the Java class added to server/lib (ATM only ./lib works!!)
+    To be able to use it the server must have the configuration for serialization allow-list and the Java class added to server/lib
+    (for some legacy releases only ./lib works!!)
     Copy the Domain/target/Encoding-Domain.jar to the server lib directory.
     Change the server/conf/infinispan.xml and add the following to the <cache-container>
 
         <serialization>
-          <white-list>
+          <allow-list>
             <regex>org.infinispan.wfink.playground.*</regex>
-          </white-list>
+          </allow-list>
         </serialization>
 
     The Java class added with the JavaObjectClient can be read with REST using different formats
@@ -54,3 +55,4 @@ Run the example
      curl -H "Accept: application/xml" http://127.0.0.1:11222/rest/v2/caches/JavaObjectCache/1
        -> <?xml version="1.0" ?><org.infinispan.wfink.playground.encoding.domain.SimplePOJO><firstValue>Entry</firstValue><secondValue>1</secondValue></org.infinispan.wfink.playground.encoding.domain.SimplePOJO>
 
+    Also the administration console will show the content for this cache.
